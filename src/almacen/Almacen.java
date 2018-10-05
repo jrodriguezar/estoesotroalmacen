@@ -665,7 +665,6 @@ public class Almacen {
                 giroDerecha(posicion);
                 while (robot[posicion].getAvenue() != buscar_avenuesacar(nombre)) {
                     robot[posicion].move();
-
                 }
                 mira_este(posicion);
             }
