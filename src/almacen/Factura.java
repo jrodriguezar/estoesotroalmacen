@@ -12,10 +12,12 @@ import java.util.ArrayList;
  * @author CARITO
  */
 public class Factura {
+    private int num;
     private ArrayList<Producto> productos;
 
-    public Factura() {
+    public Factura(int num) {
         this.productos = new ArrayList<>();
+        this.num = num;
     }
     
     
@@ -34,8 +36,8 @@ public class Factura {
     
     public void imprimirfact() {
         for (int i = 0; i < this.productos.size(); i++) {
-            System.out.println("productos:                valor:  ");
-            System.out.println(this.productos.get(i).getDescripcion() +"   "+ this.productos.get(i).getValor());
+            System.out.println("productos:              valor:  ");
+            System.out.println(this.productos.get(i).getDescripcion() +"                "+ this.productos.get(i).getValor());
          }
         System.out.println("el total a pagar es: "+valor(this.productos));
     }
