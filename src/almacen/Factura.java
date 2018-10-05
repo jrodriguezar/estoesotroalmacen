@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package almacen;
 
 import java.util.ArrayList;
@@ -12,12 +7,10 @@ import java.util.ArrayList;
  * @author CARITO
  */
 public class Factura {
-    private int num;
     private ArrayList<Producto> productos;
 
-    public Factura(int num) {
+    public Factura() {
         this.productos = new ArrayList<>();
-        this.num = num;
     }
     
     
@@ -41,7 +34,4 @@ public class Factura {
          }
         System.out.println("el total a pagar es: "+valor(this.productos));
     }
-
-
-
 }

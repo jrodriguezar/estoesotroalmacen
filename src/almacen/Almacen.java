@@ -689,127 +689,64 @@ public class Almacen {
     }
     
     public void movimiento_robotsac(String nombre, int num_disp_cola) {
-        if (robot[0].getStreet() == 7) {
-            mover_robotsac(0, nombre);
-            recoger(0);
-            fila(0,num_disp_cola);
-        } else {
-            if (robot[1].getStreet() == 7) {
-                 mover_robotsac(1, nombre);
-                 recoger(1);
-                 fila(1,num_disp_cola);
-            } else {
-                if (robot[2].getStreet() == 7) {
-                     mover_robotsac(2, nombre);
-                     recoger(2);
-                     fila(2,num_disp_cola);
-                } else {
-                    if (robot[3].getStreet() == 7) {
-                         mover_robotsac(3, nombre);
-                         recoger(3);
-                         fila(3,num_disp_cola);
-                    } else {
-                        if (robot[4].getStreet() == 7) {
-                             mover_robotsac(4, nombre);
-                             recoger(4);
-                             fila(4,num_disp_cola);
-                        } else {
-                            if (robot[5].getStreet() == 7) {
-                                 mover_robotsac(5, nombre);
-                                 recoger(5);
-                                 fila(5,num_disp_cola);
-                            } else {
-                                if (robot[6].getStreet() == 7) {
-                                     mover_robotsac(6, nombre);
-                                     recoger(6);
-                                     fila(6,num_disp_cola);
-                                } else {
-                                    if (robot[7].getStreet() == 7) {
-                                         mover_robotsac(7, nombre);
-                                         recoger(7);
-                                         fila(7,num_disp_cola);
-                                    } else {
-                                        if (robot[8].getStreet() == 7) {
-                                             mover_robotsac(8, nombre);
-                                             recoger(8);
-                                             fila(8,num_disp_cola);
-                                        } else {
-                                            if (robot[9].getStreet() == 7) {
-                                                 mover_robotsac(9, nombre);
-                                                 recoger(9);
-                                                 fila(9,num_disp_cola);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        for (int i = 0; i < 9; i++) {
+            if (robot[i].getStreet() == 7) {
+                mover_robotsac(i, nombre);
+                recoger(i);
+                fila(i,num_disp_cola);
+                return;
+            } 
+        }
+    }
+    
+    public void mover_envio(int posicion){
+        int ubicacion = robot[posicion].getAvenue();
+        mover(1,posicion);
+        giroDerecha(posicion);
+        while(robot[posicion].getAvenue() != 11){
+            robot[posicion].move();
+        }
+        giroDerecha(posicion);
+        while(robot[posicion].getStreet() != 12){
+            robot[posicion].move();
+        }
+        recoger(posicion);
+        girar(2,posicion);
+        while(robot[posicion].getStreet() != 0){
+            robot[posicion].move();
+        }
+        girar(2, posicion);
+        while(robot[posicion].getStreet() != 6){
+            robot[posicion].move();
+        }
+        giroDerecha(posicion);
+        while(robot[posicion].getAvenue() != ubicacion){
+            robot[posicion].move();
+        }
+        girar(1,posicion);
+        mover(1,posicion);
+        girar(2,posicion);
+        
+    }
+    
+    public void movimiento_envio() {
+        for (int i = 0; i < 9; i++) {
+            if (robot[i].getStreet() == 7) {
+                mover_envio(i);
+                return;
+            } 
         }
     }
     
     public void movimiento_robot(String nombre, int num_disp_cola) {
-        if (robot[0].getStreet() == 7) {
-            mover_robot(0, nombre);
-            recoger(0);
-            fila(0,num_disp_cola);
-        } else {
-            if (robot[1].getStreet() == 7) {
-                 mover_robot(1, nombre);
-                 recoger(1);
-                 fila(1,num_disp_cola);
-            } else {
-                if (robot[2].getStreet() == 7) {
-                     mover_robot(2, nombre);
-                     recoger(2);
-                     fila(2,num_disp_cola);
-                } else {
-                    if (robot[3].getStreet() == 7) {
-                         mover_robot(3, nombre);
-                         recoger(3);
-                         fila(3,num_disp_cola);
-                    } else {
-                        if (robot[4].getStreet() == 7) {
-                             mover_robot(4, nombre);
-                             recoger(4);
-                             fila(4,num_disp_cola);
-                        } else {
-                            if (robot[5].getStreet() == 7) {
-                                 mover_robot(5, nombre);
-                                 recoger(5);
-                                 fila(5,num_disp_cola);
-                            } else {
-                                if (robot[6].getStreet() == 7) {
-                                     mover_robot(6, nombre);
-                                     recoger(6);
-                                     fila(6,num_disp_cola);
-                                } else {
-                                    if (robot[7].getStreet() == 7) {
-                                         mover_robot(7, nombre);
-                                         recoger(7);
-                                         fila(7,num_disp_cola);
-                                    } else {
-                                        if (robot[8].getStreet() == 7) {
-                                             mover_robot(8, nombre);
-                                             recoger(8);
-                                             fila(8,num_disp_cola);
-                                        } else {
-                                            if (robot[9].getStreet() == 7) {
-                                                 mover_robot(9, nombre);
-                                                 recoger(9);
-                                                 fila(9,num_disp_cola);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        for (int i = 0; i < 9; i++) {
+            if (robot[i].getStreet() == 7) {
+                mover_robot(i, nombre);
+                recoger(i);
+                fila(i,num_disp_cola);
+                return;
+            } 
+        }        
     }
     
     public int iden_colum(String producto) {
@@ -853,7 +790,6 @@ public class Almacen {
     }
     
     public boolean ingresar_productoal() {
-        this.facturas.add(new Factura());
         int num_disp_cola = 9;
         if (espacio_vacio() == false) {
             System.out.println("No hay espacio disponible en el inventario");
@@ -931,11 +867,16 @@ public class Almacen {
     }
     
     public boolean sacar_estante() {
+        this.facturas.add(new Factura());
+        if (this.facturas.isEmpty()) {
+            System.out.println(" no se agrego factura");
+        }
         int num_disp_cola = 9;
         System.out.println("Cuantos tipos de productos va a sacar?(maximo 10)");
         int tip = teclado.nextInt();
         int s = 0;
         int f = s;
+        int avenue = 0;
         if (tip <= 10) {
                 while (f < tip) {
                     while (s < tip) {
@@ -950,7 +891,8 @@ public class Almacen {
                                 if (cantidad <= can_productos(columna,0,nombre)) {
                                     movimiento_robotsac(nombre, num_disp_cola);
                                     for(int i=0; i < cantidad; i++){
-                                        facturas.get(0).getProductos().set(i, matriz[columna][0].saca(nombre,facturas,nfacturas));
+                                        facturas.get(0).getProductos().add(i, matriz[columna][0].saca(nombre));
+                                        System.out.println("Ingreso ;v");
                                     }
                                     num_disp_cola--;
                                     s++;
@@ -958,7 +900,8 @@ public class Almacen {
                                     if (can_productos(columna,0,nombre)==0) {
                                         movimiento_robotsac(nombre, num_disp_cola);
                                         for(int i=0; i < cantidad; i++){
-                                        facturas.get(0).getProductos().set(i, matriz[columna][1].saca(nombre,facturas,nfacturas));
+                                        facturas.get(0).getProductos().add(i, matriz[columna][1].saca(nombre));
+                                        System.out.println("Ingreso ;v");
                                         }
                                         num_disp_cola--;
                                         s++;
@@ -967,8 +910,7 @@ public class Almacen {
                                     int g=0;
                                     int can_productos = can_productos(columna,0,nombre);
                                     while(g < can_productos){
-                                        //¿aqui tambien va?
-                                        matriz[columna][0].saca(nombre,facturas,nfacturas);
+                                        facturas.get(0).getProductos().add(g, matriz[columna][0].saca(nombre));
                                         g++;
                                     }
                                     num_disp_cola--;
@@ -976,8 +918,7 @@ public class Almacen {
                                     int y=0;
                                     can_productos = can_productos(columna,1,nombre);
                                     while(y < can_productos && g < cantidad){
-                                        //¿aqui tambien va?
-                                        matriz[columna][1].saca(nombre,facturas,nfacturas);
+                                        facturas.get(0).getProductos().add(y, matriz[columna][1].saca(nombre));
                                         y++;
                                         g++;
                                     }
@@ -994,6 +935,7 @@ public class Almacen {
                     }
                     f++;
                 }
+                movimiento_envio();
                 facturas.get(nfacturas).imprimirfact();
                 ////Aqui va el movimiento del robot para llevar a envio
         }else{
@@ -1002,5 +944,4 @@ public class Almacen {
         }
         return true;
     }
-    
 }

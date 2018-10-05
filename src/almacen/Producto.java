@@ -22,9 +22,4 @@ public class Producto {
     public String getDescripcion() {
         return descripcion;
     }
-
-    @Override
-    public String toString() {
-        return "Producto{" + "valor=" + valor + ", descripcion=" + descripcion + '}';
-    }
 }

@@ -76,7 +76,7 @@ public class Estante {
         }
     }
     
-    public Producto saca(String producto, ArrayList<Factura> facturas, int nfactura){
+    public Producto saca(String producto){
         Producto productor; 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {
@@ -91,8 +91,7 @@ public class Estante {
         }
         return null;
     }
-    
-    ///idea: hacer crear un producto aparte con el cual se llena el thing de envio, este llena con datos sacados de un solo objeto por tipo y se llena dependiendo de la cantidad
+
     public boolean espacio_vacio() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {

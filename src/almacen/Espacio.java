@@ -23,5 +23,4 @@ public class Espacio {
     public void setProducto(Producto productoy) {
         producto = productoy;
     }
-    
 }
