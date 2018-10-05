@@ -490,6 +490,12 @@ public class Almacen {
         empleado.setLabel("Empleado");
     }
     
+    public void giroe(int giros){
+        for (int i = 0; i < giros; i++) {
+            empleado.turnLeft();
+        }
+    }
+    
     public void mover(int pasos, int posicion) {
         for (int i = pasos; i > 0; i--) {
             robot[posicion].move();
@@ -715,6 +721,7 @@ public class Almacen {
         while(robot[posicion].getStreet() != 0){
             robot[posicion].move();
         }
+        robot[posicion].putThing();
         girar(2, posicion);
         while(robot[posicion].getStreet() != 6){
             robot[posicion].move();
@@ -892,7 +899,6 @@ public class Almacen {
                                     movimiento_robotsac(nombre, num_disp_cola);
                                     for(int i=0; i < cantidad; i++){
                                         facturas.get(0).getProductos().add(i, matriz[columna][0].saca(nombre));
-                                        System.out.println("Ingreso ;v");
                                     }
                                     num_disp_cola--;
                                     s++;
@@ -901,7 +907,6 @@ public class Almacen {
                                         movimiento_robotsac(nombre, num_disp_cola);
                                         for(int i=0; i < cantidad; i++){
                                         facturas.get(0).getProductos().add(i, matriz[columna][1].saca(nombre));
-                                        System.out.println("Ingreso ;v");
                                         }
                                         num_disp_cola--;
                                         s++;
@@ -935,9 +940,16 @@ public class Almacen {
                     }
                     f++;
                 }
+                giroe(3);
+                empleado.move();
+                Thing zona = new Thing(almacen, 12, 11);
+                zona.getIcon().setColor(Color.ORANGE);
+                zona.getIcon().setLabel("Paquete");
+                giroe(2);
+                empleado.move();
+                giroe(3);
                 movimiento_envio();
                 facturas.get(nfacturas).imprimirfact();
-                ////Aqui va el movimiento del robot para llevar a envio
         }else{
              System.out.println("No tenemos tantos tipos disponibles. Vuelva a intentarlo por favor");
                 return false;
