@@ -689,9 +689,7 @@ public class Almacen {
         for (int i = 0; i < 9; i++) {
             if (robot[i].getStreet() == 7) {
                 mover_robotsac(i, nombre);
-                System.out.println("esta es la street que guardare: "+ robot[i].getStreet());
                 puestosi[i][0] = robot[i].getStreet();
-                System.out.println("esta es la avenue que guardare: "+ robot[i].getAvenue());
                 puestosi[i][1] = robot[i].getAvenue();
                 recoger(i);
                 fila(i,num_disp_cola);
@@ -744,9 +742,7 @@ public class Almacen {
         for (int i = 0; i < 9; i++) {
             if (robot[i].getStreet() == 7) {
                 mover_robot(i, nombre);
-                System.out.println("esta es la street que guardare: "+ robot[i].getStreet());
                 puestosi[i][0] = robot[i].getStreet();
-                System.out.println("esta es la avenue que guardare: "+ robot[i].getAvenue());
                 puestosi[i][1] = robot[i].getAvenue();
                 recoger(i);
                 fila(i,num_disp_cola);
