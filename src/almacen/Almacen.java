@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Jhon
+ * @author Jhon y Carito
  */
 
 public class Almacen {
@@ -18,6 +18,7 @@ public class Almacen {
     private Estante[][] matriz;
     private int nfacturas;
     private ArrayList<Factura> facturas;
+    private int[][] puestosi;
     
     public Almacen(){
         teclado = new Scanner(System.in);
@@ -28,6 +29,7 @@ public class Almacen {
         nfacturas = 0;
         facturas = new ArrayList<>();
         robot = new Robot[10];
+        puestosi = new int[10][2];
         for (int i = 0; i < 11; i++) {
             Wall norte = new Wall(almacen, 0, i, Direction.NORTH);
         }
@@ -58,26 +60,16 @@ public class Almacen {
             iter++;
         }
 
-        Producto alimentos = new Producto("Alimento", 123);
-        //Producto alimentosz = new Producto("Alimento", 123);
-        Producto robotica = new Producto("Memoria", 1234);
-        //Producto roboticaz = new Producto("Memoria", 12324);
-        Producto maletas = new Producto("Maleta", 4325);
-        //Producto maletasz = new Producto("Maleta", 4325);
-        Producto juguetes = new Producto("Munieco", 1234);
-        //Producto juguetesz = new Producto("Munieco", 1234);
-        Producto ropa1 = new Producto("Camisa", 12876);
-        //Producto ropaz1 = new Producto("Camisa", 12876);
-        Producto ropa2 = new Producto("Pantalon", 123);
-        //Producto ropaz2 = new Producto("Pantalon", 123);
-        Producto robotica1 = new Producto("Chip", 1234);
-        //Producto roboticaz1 = new Producto("Chip", 1234);
-        Producto maletas1 = new Producto("Bolso", 4325);
-        //Producto maletasz1 = new Producto("Bolso", 4325);
-        Producto juguetes1 = new Producto("Munieca", 1234);
-        //Producto juguetesz1 = new Producto("Munieca", 1234);
-        Producto alimento1 = new Producto("Frijol", 12876);
-        //Producto alimentoz1 = new Producto("Frijol", 12876);
+        Producto alimentos = new Producto("Alimento", 1000);
+        Producto robotica = new Producto("Memoria", 2000);
+        Producto maletas = new Producto("Maleta", 3000);
+        Producto juguetes = new Producto("Munieco", 4000);
+        Producto ropa1 = new Producto("Camisa", 5000);
+        Producto ropa2 = new Producto("Pantalon", 6000);
+        Producto robotica1 = new Producto("Chip", 7000);
+        Producto maletas1 = new Producto("Bolso", 8000);
+        Producto juguetes1 = new Producto("Munieca", 9000);        
+        Producto alimento1 = new Producto("Frijol", 10000);
         
         Espacio[][] espacio1 = new Espacio[3][7];
         for (int i = 0; i < 3; i++) {
@@ -697,6 +689,10 @@ public class Almacen {
         for (int i = 0; i < 9; i++) {
             if (robot[i].getStreet() == 7) {
                 mover_robotsac(i, nombre);
+                System.out.println("esta es la street que guardare: "+ robot[i].getStreet());
+                puestosi[i][0] = robot[i].getStreet();
+                System.out.println("esta es la avenue que guardare: "+ robot[i].getAvenue());
+                puestosi[i][1] = robot[i].getAvenue();
                 recoger(i);
                 fila(i,num_disp_cola);
                 return;
@@ -748,6 +744,10 @@ public class Almacen {
         for (int i = 0; i < 9; i++) {
             if (robot[i].getStreet() == 7) {
                 mover_robot(i, nombre);
+                System.out.println("esta es la street que guardare: "+ robot[i].getStreet());
+                puestosi[i][0] = robot[i].getStreet();
+                System.out.println("esta es la avenue que guardare: "+ robot[i].getAvenue());
+                puestosi[i][1] = robot[i].getAvenue();
                 recoger(i);
                 fila(i,num_disp_cola);
                 return;
@@ -794,6 +794,46 @@ public class Almacen {
         }
         return columna;
     }
+    public int valor_pro(String producto) {
+        int valor = 0;
+        switch (producto) {
+            case "Memoria":
+                valor = 2000;
+                break;
+            case "Alimento":
+                valor = 1000;
+                break;
+            case "Maleta":
+                valor = 3000;
+                break;
+            case "Munieco":
+                valor = 4000;
+                break;
+            case "Camisa":
+                valor = 5000;
+                break;
+            case "Pantalon":
+                valor = 6000;
+                break;
+            case "Chip":
+                valor = 7000;
+                break;
+            case "Bolso":
+                valor = 8000;
+                break;
+            case "Munieca":
+                valor = 9000;
+                break;
+            case "Frijol":
+                valor = 10000;
+                break;
+            default:
+                System.out.println("el producto no se encuentra en nuestro inventario o esta mal escrito intente de nuevo");
+                break;
+        }
+        return valor;
+    }
+
     
     public boolean ingresar_productoal() {
         int num_disp_cola = 9;
@@ -864,6 +904,7 @@ public class Almacen {
                     }
                     f++;
                 }
+                devolver(num_disp_cola);
             } else {
                 System.out.println("No tenemos tantos tipos disponibles. Vuelva a intentarlo por favor");
                 return false;
@@ -937,14 +978,16 @@ public class Almacen {
                             System.out.println("Lo sentimos, el producto no se encuentra en el inventario, presione enter para volver a intentar.");
                         }
                     }
+                    
                     f++;
                 }
+                devolver(num_disp_cola);
                 giroe(3);
                 empleado.move();
                 Thing zona = new Thing(almacen, 12, 11);
                 zona.getIcon().setColor(Color.ORANGE);
                 zona.getIcon().setLabel("Paquete");
-                giroe(2);
+                giroe(2);                
                 empleado.move();
                 giroe(3);
                 movimiento_envio();
@@ -955,4 +998,64 @@ public class Almacen {
         }
         return true;
     }
+
+    public void devolver(int num_fila) {
+        for (int i = 0; i < 9-num_fila; i++) {
+            while (robot[i].getStreet() < 11) {
+                robot[i].move();
+            }
+            giroDerecha(i);
+            while (robot[i].getAvenue() != -1) {
+                robot[i].move();
+            }
+            giroDerecha(i);
+            while (robot[i].getStreet() > 6) {
+                robot[i].move();
+            }
+            giroDerecha(i);
+            robot[i].move();
+            girar(1, i);
+            while (robot[i].getStreet() != puestosi[i][0]) {
+                robot[i].move();
+            }
+            giroDerecha(i);
+            while (robot[i].getAvenue() != puestosi[i][1]) {
+                robot[i].move();
+            }
+            if (!robot[i].canPickThing()) {
+                robot[i].putThing();
+            }
+            
+            if (robot[i].getAvenue() == i) {
+                girar(3, i);
+            }
+            if (robot[i].getAvenue() > i) {
+                girar(2, i);
+                while (robot[i].getAvenue() != i) {
+                    robot[i].move();
+                }
+            } else {
+                while (robot[i].getAvenue() != i) {
+                    robot[i].move();           
+                }
+                }
+                while(robot[i].getDirection() != Direction.SOUTH ){
+                    robot[i].turnLeft();
+                }    
+                while (robot[i].frontIsClear()) {
+                    robot[i].move();                
+            }
+                girar(2,i);
+        }
+    }
+    public void imprimi_coor_origen(){
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 2; j++) {
+            System.out.println("voy a imprimir el arreglo: "+ i);
+            System.out.println(puestosi[i][j]);           
+        }
+        System.out.println("");
+    }
 }
+}
+ 
