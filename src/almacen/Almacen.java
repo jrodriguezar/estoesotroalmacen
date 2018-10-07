@@ -1048,14 +1048,5 @@ public class Almacen {
                 girar(2,i);
         }
     }
-    public void imprimi_coor_origen(){
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 2; j++) {
-            System.out.println("voy a imprimir el arreglo: "+ i);
-            System.out.println(puestosi[i][j]);           
-        }
-        System.out.println("");
-    }
-}
 }
  
